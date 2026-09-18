@@ -1,23 +1,28 @@
 from sqlmodel import Session
 
 from .database import create_db_and_tables, engine
-from .models import Hero, Team
+from .models import Persona, Oficina
 
 
-def create_heroes():
+def create_personas():
     with Session(engine) as session:
-        team_z_force = Team(name="Z-Force", headquarters="Sister Margaret's Bar")
-
-        hero_deadpond = Hero(
-            name="Deadpond", secret_name="Dive Wilson", team=team_z_force
+        oficina_admin = Oficina(
+            nombre="Administracion", 
+            direccion="Av. Colon 348"
         )
-        session.add(hero_deadpond)
+
+        persona_miguel = Persona(
+            name="Miguel Perez", 
+            direccion="Ensenada 2365", 
+            team=oficina_admin
+        )
+        session.add(persona_miguel)
         session.commit()
 
-        session.refresh(hero_deadpond)
+        session.refresh(persona_miguel)
 
-        print("Created hero:", hero_deadpond)
-        print("Hero's team:", hero_deadpond.team)
+        print("Persona Creada:", persona_miguel)
+        print("Su oficina:", persona_miguel.oficina)
 
 
 def main():
