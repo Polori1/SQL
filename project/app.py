@@ -10,11 +10,13 @@ def create_personas():
             nombre="Administracion", 
             direccion="Av. Colon 348"
         )
+        #session.add(oficina_admin)
+        #session.commit()
 
         persona_miguel = Persona(
-            name="Miguel Perez", 
+            nombre="Miguel Perez", 
             direccion="Ensenada 2365", 
-            team=oficina_admin
+            oficina=oficina_admin
         )
         session.add(persona_miguel)
         session.commit()
@@ -27,7 +29,7 @@ def create_personas():
 
 def main():
     create_db_and_tables()
-    create_heroes()
+    create_personas()
 
 
 if __name__ == "__main__":
